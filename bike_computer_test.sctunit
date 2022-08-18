@@ -1,0 +1,74 @@
+testclass bike_computer_test for statechart Statechart {
+	@Test
+	operation ride_state_active_on_init () {
+		enter
+		
+		assert active (main_region.Ride)
+	}
+
+	@Test
+	operation secured_state_on_left_click () {
+		ride_state_active_on_init
+		
+		raise left_button_clicked
+		
+		assert active (main_region.Secured)
+	}
+
+	@Test
+	operation alarm_state_on_motion_detected () {
+		secured_state_on_left_click
+		
+		raise motion_detected
+		
+		assert active (main_region.Alarm)
+	}
+
+	@Test
+	operation password_prompt_state_on_left_click_given_locked () {
+		secured_state_on_left_click
+		
+		raise left_button_clicked
+		
+		assert active (main_region.PasswordPrompt)
+	}
+	
+	@Test
+	operation password_prompt_state_on_left_click_given_alarm () {
+		alarm_state_on_motion_detected
+		
+		raise left_button_clicked
+
+		assert active (main_region.PasswordPrompt)
+	}
+	
+	
+	@Test
+	operation alarm_state_on_wrong_password_given_locked () {
+		password_prompt_state_on_left_click_given_locked
+		
+		assert active (main_region.Alarm)
+	}
+	
+	@Test
+	operation alarm_state_on_wrong_password_given_alarm () {
+		password_prompt_state_on_left_click_given_alarm
+		
+		assert active (main_region.Alarm)
+	}
+	
+	@Test
+	operation ride_state_on_correct_password_given_locked () {
+		password_prompt_state_on_left_click_given_locked
+		
+		assert active (main_region.Ride)
+	}
+	
+	@Test
+	operation ride_state_on_correct_password_given_alarm () {
+		password_prompt_state_on_left_click_given_alarm
+		
+		assert active (main_region.Ride)
+	}
+
+}
