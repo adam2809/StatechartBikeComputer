@@ -117,8 +117,32 @@ testclass bike_computer_test for statechart Statechart {
 	
 	
 	@Test
-	operation stress_test() {
+	operation multiple locks_unlocks() {
+		password_prompt_state_on_left_click_given_locked
+		input_correct_password
+		assert active (main_region.Ride)
 		
+		raise left_button_clicked
+		
+		assert called display_locked 1 times
+		assert active (main_region.Secured)
+		
+		raise motion_detected
+		
+		assert called activate_alarm 1 times
+		assert active (main_region.Alarm)
+		
+		raise left_button_clicked
+		assert active (main_region.PasswordPrompt.r1.Ready)
+		
+		raise left_button_clicked
+		
+		input_wrong_password
+		assert called is_password_tries_exceeded(1) 1 times
+		assert active (main_region.PasswordPrompt.r1.Ready)
+		
+		input_correct_password
+		assert active (main_region.Ride)
 	}
 	
 	operation input_correct_password() {
