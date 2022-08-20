@@ -1,2 +1,4 @@
 *.sctunit.xml
 .settings
+src-gen/*
+lib-gen/*

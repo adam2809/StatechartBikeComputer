@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_ZNxQgB7-Ee2lBoCq7YSu1A" specification="// Use the event driven execution model.&#xA;// Switch to cycle based behavior&#xA;// by specifying '@CycleBased(200)'.&#xA;@EventDriven&#xA;&#xA;// Use @SuperSteps(yes) to enable&#xA;// super step semantics.&#xA;@SuperSteps(no)&#xA;&#xA;interface:&#xA;&#x9;// Define events and variables here. &#xA;&#x9;// Use CTRL + Space for content assist.&#xA;&#x9;in event left_button_clicked&#xA;&#x9;in event right_button_clicked&#xA;&#x9;in event double_button_clicked&#xA;&#x9;&#xA;&#x9;in event motion_detected&#xA;&#x9;&#xA;&#x9;out event password_prompt_short_char&#xA;&#x9;out event password_prompt_long_char&#xA;&#x9;out event correct_password&#xA;&#x9;out event wrong_password&#xA;&#x9;&#xA;internal:&#xA;&#x9;const MAX_PASSWORD_TRIES:integer = 3&#xA;&#x9;const PASSWORD:string                     = &quot;__.._.&quot;&#xA;&#x9;var     curr_password:string                = &quot;&quot;&#xA;&#x9;var     curr_password_tries:integer      = 0&#xA;&#xA;&#x9;operation clear_password() {&#xA;&#x9;&#x9;curr_password = &quot;&quot;&#xA;&#x9;&#x9;curr_password_tries = 0&#xA;&#x9;}&#xA;&#x9;" name="Statechart">
+  <sgraph:Statechart xmi:id="_ZNxQgB7-Ee2lBoCq7YSu1A" specification="// Use the event driven execution model.&#xA;// Switch to cycle based behavior&#xA;// by specifying '@CycleBased(200)'.&#xA;@EventDriven&#xA;&#xA;// Use @SuperSteps(yes) to enable&#xA;// super step semantics.&#xA;@SuperSteps(no)&#xA;&#xA;interface:&#xA;&#x9;// Define events and variables here. &#xA;&#x9;// Use CTRL + Space for content assist.&#xA;&#x9;in event left_button_clicked&#xA;&#x9;in event right_button_clicked&#xA;&#x9;in event double_button_clicked&#xA;&#x9;&#xA;&#x9;in event motion_detected&#xA;&#x9;&#xA;&#x9;out event password_prompt_short_char&#xA;&#x9;out event password_prompt_long_char&#xA;&#x9;out event correct_password&#xA;&#x9;out event wrong_password&#xA;&#x9;&#xA;internal:&#xA;&#x9;const MAX_PASSWORD_TRIES:integer = 3&#xA;&#x9;const PASSWORD:string                     = &quot;__.._.&quot;&#xA;&#x9;var     curr_password:string                = &quot;&quot;&#xA;&#x9;var     curr_password_tries:integer      = 0" name="Statechart">
     <regions xmi:id="_ZN066B7-Ee2lBoCq7YSu1A" name="main region">
       <vertices xsi:type="sgraph:Entry" xmi:id="_ZN066R7-Ee2lBoCq7YSu1A">
         <outgoingTransitions xmi:id="_ZN066h7-Ee2lBoCq7YSu1A" target="_ZN1h8B7-Ee2lBoCq7YSu1A"/>
@@ -19,7 +19,7 @@
         <outgoingTransitions xmi:id="_vfLRgB8IEe2lBoCq7YSu1A" specification="# correct_password_exit >&#xA;" target="_ZN1h8B7-Ee2lBoCq7YSu1A"/>
         <outgoingTransitions xmi:id="_3vXmEB8IEe2lBoCq7YSu1A" specification="# wrong_password_exit >&#xA;" target="_ib7CIB7-Ee2lBoCq7YSu1A"/>
         <regions xmi:id="_i4lwAB7-Ee2lBoCq7YSu1A" name="r1">
-          <vertices xsi:type="sgraph:State" xmi:id="_8MHpwB7-Ee2lBoCq7YSu1A" specification="left_button_clicked / raise password_prompt_short_char&#xA;left_button_clicked / curr_password +='.'&#xA;right_button_clicked / raise password_prompt_long_char&#xA;right_button_clicked / curr_password += '_'&#xA;&#xA;&#xA;" name="Ready" incomingTransitions="_IYticB7_Ee2lBoCq7YSu1A _OhBC0B8SEe2lBoCq7YSu1A">
+          <vertices xsi:type="sgraph:State" xmi:id="_8MHpwB7-Ee2lBoCq7YSu1A" specification="left_button_clicked / raise password_prompt_short_char&#xA;left_button_clicked / curr_password +='.'&#xA;right_button_clicked / raise password_prompt_long_char&#xA;right_button_clicked / curr_password += '_'&#xA;&#xA;&#xA;" name="Ready" incomingTransitions="_IYticB7_Ee2lBoCq7YSu1A _9XF34CCaEe2N-q7q-71AOw">
             <outgoingTransitions xmi:id="_M9rzYB8IEe2lBoCq7YSu1A" specification="double_button_clicked&#xA;" target="_Kuh0MB8IEe2lBoCq7YSu1A"/>
           </vertices>
           <vertices xsi:type="sgraph:Entry" xmi:id="_H8mOMB7_Ee2lBoCq7YSu1A">
@@ -33,7 +33,7 @@
           <vertices xsi:type="sgraph:Exit" xmi:id="_K_K4QB8IEe2lBoCq7YSu1A" name="correct_password_exit" incomingTransitions="_VJ9RQB8IEe2lBoCq7YSu1A"/>
           <vertices xsi:type="sgraph:Choice" xmi:id="_qtzeIB8REe2lBoCq7YSu1A" incomingTransitions="_jcgI0B8TEe22Ob54xs-QWw">
             <outgoingTransitions xmi:id="_z2cdoB8REe2lBoCq7YSu1A" specification="[curr_password_tries > MAX_PASSWORD_TRIES] / curr_password = &quot;&quot;;&#xA;&#xA;&#x9;curr_password_tries = 0&#xA;&#xA;&#xA;" target="_DrTpEB8IEe2lBoCq7YSu1A"/>
-            <outgoingTransitions xmi:id="_OhBC0B8SEe2lBoCq7YSu1A" specification="else / curr_password = &quot;&quot;;&#xA;" target="_8MHpwB7-Ee2lBoCq7YSu1A"/>
+            <outgoingTransitions xmi:id="_9XF34CCaEe2N-q7q-71AOw" specification="else / curr_password = &quot;&quot;&#xA;" target="_8MHpwB7-Ee2lBoCq7YSu1A"/>
           </vertices>
         </regions>
       </vertices>
@@ -327,16 +327,6 @@
       <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_z2e54B8REe2lBoCq7YSu1A" id="(0.06666666666666667,0.4)"/>
       <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_z2e54R8REe2lBoCq7YSu1A" id="(0.4666666666666667,0.2)"/>
     </edges>
-    <edges xmi:id="_OhCQ8B8SEe2lBoCq7YSu1A" type="Transition" element="_OhBC0B8SEe2lBoCq7YSu1A" source="_qt49sB8REe2lBoCq7YSu1A" target="_8MI34B7-Ee2lBoCq7YSu1A">
-      <children xsi:type="notation:DecorationNode" xmi:id="_OhCQ9B8SEe2lBoCq7YSu1A" type="TransitionExpression">
-        <styles xsi:type="notation:ShapeStyle" xmi:id="_OhCQ9R8SEe2lBoCq7YSu1A"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_OhCQ9h8SEe2lBoCq7YSu1A" x="-204" y="33"/>
-      </children>
-      <styles xsi:type="notation:ConnectorStyle" xmi:id="_OhCQ8R8SEe2lBoCq7YSu1A" routing="Rectilinear" lineColor="4210752"/>
-      <styles xsi:type="notation:FontStyle" xmi:id="_OhCQ8x8SEe2lBoCq7YSu1A" fontName="Verdana"/>
-      <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_OhCQ8h8SEe2lBoCq7YSu1A" points="[0, 8, -240, 161]$[0, 44, -240, 197]$[482, 44, 242, 197]$[482, -161, 242, -8]$[246, -161, 6, -8]"/>
-      <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_OhC4AB8SEe2lBoCq7YSu1A" id="(0.9835616438356164,0.5619834710743802)"/>
-    </edges>
     <edges xmi:id="_jcilEB8TEe22Ob54xs-QWw" type="Transition" element="_jcgI0B8TEe22Ob54xs-QWw" source="_KuibQB8IEe2lBoCq7YSu1A" target="_qt49sB8REe2lBoCq7YSu1A">
       <children xsi:type="notation:DecorationNode" xmi:id="_jcjMIB8TEe22Ob54xs-QWw" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_jcjMIR8TEe22Ob54xs-QWw"/>
@@ -347,6 +337,16 @@
       <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_jcilEh8TEe22Ob54xs-QWw" points="[6, -4, 109, -70]$[-102, 77, 1, 11]"/>
       <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_jclBUB8TEe22Ob54xs-QWw" id="(0.2,0.26666666666666666)"/>
       <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_jclBUR8TEe22Ob54xs-QWw" id="(0.2,0.13333333333333333)"/>
+    </edges>
+    <edges xmi:id="_9Xb2ICCaEe2N-q7q-71AOw" type="Transition" element="_9XF34CCaEe2N-q7q-71AOw" source="_qt49sB8REe2lBoCq7YSu1A" target="_8MI34B7-Ee2lBoCq7YSu1A">
+      <children xsi:type="notation:DecorationNode" xmi:id="_9XcdMCCaEe2N-q7q-71AOw" type="TransitionExpression">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_9XcdMSCaEe2N-q7q-71AOw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_9XcdMiCaEe2N-q7q-71AOw" x="-224" y="21"/>
+      </children>
+      <styles xsi:type="notation:ConnectorStyle" xmi:id="_9Xb2ISCaEe2N-q7q-71AOw" routing="Rectilinear" lineColor="4210752"/>
+      <styles xsi:type="notation:FontStyle" xmi:id="_9Xb2IyCaEe2N-q7q-71AOw" fontName="Verdana"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_9Xb2IiCaEe2N-q7q-71AOw" points="[4, 3, -240, 174]$[4, 35, -240, 206]$[465, 35, 221, 206]$[465, -161, 221, 10]$[246, -161, 2, 10]"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_9Xe5cCCaEe2N-q7q-71AOw" id="(0.9945205479452055,0.4132231404958678)"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

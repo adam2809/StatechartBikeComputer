@@ -1,0 +1,10 @@
+GeneratorModel for yakindu::c {
+	statechart Statechart{
+	feature Outlet {
+		targetProject = "StatechartBikeComputer"
+		targetFolder = "src-gen"
+		libraryTargetFolder = "lib-gen"
+	}	
+	}
+	
+}
