@@ -97,6 +97,7 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_locked () {
 		password_prompt_state_on_left_click_given_locked
 		input_wrong_password
+		assert called is_password_tries_exceeded(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
@@ -107,14 +108,21 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_alarm () {
 		password_prompt_state_on_left_click_given_alarm
 		input_wrong_password
+		assert called is_password_tries_exceeded(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
 		assert active (main_region.Ride)
 	}
 	
+	
+	@Test
+	operation stress_test() {
+		
+	}
+	
 	operation input_correct_password() {
-		mock verify_password(50) returns true
+		mock verify_password(50) returns (true)
 		
 		input_long_char
 		assert called new_password_input(1) 1 times
@@ -135,25 +143,34 @@ testclass bike_computer_test for statechart Statechart {
 	}
 	
 	operation exceed_max_password_tries() {
-		input_wrong_password
-		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called verify_max_password_tries(1) 1 times
+		mock_password_tries_exceeded
 		
 		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called verify_max_password_tries(2) 1 times
+		assert called is_password_tries_exceeded(1) 1 times
 		
 		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called verify_max_password_tries(3) 1 times
+		assert called is_password_tries_exceeded(2) 1 times
+		
+		input_wrong_password
+		assert active (main_region.PasswordPrompt.r1.Ready)
+		assert called is_password_tries_exceeded(3) 1 times
 		
 		input_wrong_password
 		assert active (main_region.Alarm)
-		assert called verify_max_password_tries(4) 1 times
+		assert called is_password_tries_exceeded(4) 1 times
+	}
+	
+	operation mock_password_tries_exceeded() {
+		mock is_password_tries_exceeded(1) returns (false)
+		mock is_password_tries_exceeded(2) returns (false)
+		mock is_password_tries_exceeded(3) returns (false)
+		mock is_password_tries_exceeded(4) returns (true)
 	}
 
 	operation input_wrong_password() {
-		mock verify_password(50) returns false
+		mock verify_password(50) returns (false)
 		
 		input_short_char
 		assert called new_password_input(0) 1 times
