@@ -3,6 +3,8 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_active_on_init () {
 		enter
 		
+		assert called disable_alarm 1 times
+		assert called display_unlocked 1 times
 		assert active (main_region.Ride)
 	}
 
@@ -12,6 +14,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise left_button_clicked
 		
+		assert called display_locked 1 times
 		assert active (main_region.Secured)
 	}
 
@@ -21,6 +24,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise motion_detected
 		
+		assert called activate_alarm 1 times
 		assert active (main_region.Alarm)
 	}
 
@@ -47,6 +51,7 @@ testclass bike_computer_test for statechart Statechart {
 		password_prompt_state_on_left_click_given_locked
 		
 		input_short_char
+		assert called new_password_input(0) 1 times
 	}
 	
 	@Test
@@ -54,6 +59,7 @@ testclass bike_computer_test for statechart Statechart {
 		password_prompt_state_on_left_click_given_locked
 		
 		input_long_char
+		assert called new_password_input(1) 1 times
 	}
 	
 	@Test
@@ -91,8 +97,9 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_locked () {
 		password_prompt_state_on_left_click_given_locked
 		input_wrong_password
-		input_correct_password
+		assert active (main_region.PasswordPrompt.r1.Ready)
 		
+		input_correct_password
 		assert active (main_region.Ride)
 	}
 	
@@ -100,58 +107,81 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_alarm () {
 		password_prompt_state_on_left_click_given_alarm
 		input_wrong_password
-		input_correct_password
+		assert active (main_region.PasswordPrompt.r1.Ready)
 		
+		input_correct_password
 		assert active (main_region.Ride)
 	}
 	
 	operation input_correct_password() {
+		mock verify_password(50) returns true
+		
 		input_long_char
+		assert called new_password_input(1) 1 times
 		input_long_char
+		assert called new_password_input(3) 1 times
 		input_short_char
+		assert called new_password_input(6) 1 times
 		input_short_char
+		assert called new_password_input(12) 1 times
 		input_long_char
+		assert called new_password_input(25) 1 times
 		input_short_char
+		assert called new_password_input(50) 1 times
 		
 		raise double_button_clicked
 		
-		assert correct_password
+		assert called verify_password(50) 1 times
 	}
 	
 	operation exceed_max_password_tries() {
 		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
+		assert called verify_max_password_tries(1) 1 times
+		
 		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
+		assert called verify_max_password_tries(2) 1 times
+		
 		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
+		assert called verify_max_password_tries(3) 1 times
+		
 		input_wrong_password
 		assert active (main_region.Alarm)
+		assert called verify_max_password_tries(4) 1 times
 	}
 
 	operation input_wrong_password() {
+		mock verify_password(50) returns false
+		
 		input_short_char
+		assert called new_password_input(0) 1 times
 		input_short_char
+		assert called new_password_input(0) 1 times
 		input_short_char
+		assert called new_password_input(0) 1 times
 		input_long_char
+		assert called new_password_input(1) 1 times
 		input_long_char
+		assert called new_password_input(3) 1 times
+		input_short_char
+		assert called new_password_input(6) 1 times
 		
 		raise double_button_clicked
 		
-		assert wrong_password
+		assert called verify_password(6) 1 times
 	}
 	
 	operation input_short_char() {
 		raise left_button_clicked
 		
-		assert password_prompt_short_char
 		assert active (main_region.PasswordPrompt.r1.Ready)
 	}	
 	
 	operation input_long_char() {
 		raise right_button_clicked
 		
-		assert password_prompt_long_char
 		assert active (main_region.PasswordPrompt.r1.Ready)
 	}
 }
