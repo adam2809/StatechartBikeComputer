@@ -63,20 +63,6 @@ testclass bike_computer_test for statechart Statechart {
 	}
 	
 	@Test
-	operation alarm_state_on_wrong_password_given_locked_and_exceeded_tries () {
-		password_prompt_state_on_left_click_given_locked 
-		
-		exceed_max_password_tries
-	}
-	
-	@Test
-	operation alarm_state_on_wrong_password_given_alarm_and_exceeded_tries () {
-		password_prompt_state_on_left_click_given_alarm
-		
-		exceed_max_password_tries
-	}
-	
-	@Test
 	operation ride_state_on_correct_password_given_locked () {
 		password_prompt_state_on_left_click_given_locked
 		input_correct_password
@@ -97,7 +83,6 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_locked () {
 		password_prompt_state_on_left_click_given_locked
 		input_wrong_password
-		assert called is_password_tries_exceeded(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
@@ -108,7 +93,6 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_on_wrong_password_then_correct_password_given_alarm () {
 		password_prompt_state_on_left_click_given_alarm
 		input_wrong_password
-		assert called is_password_tries_exceeded(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
@@ -117,7 +101,7 @@ testclass bike_computer_test for statechart Statechart {
 	
 	
 	@Test
-	operation multiple locks_unlocks() {
+	operation multiple_locks_unlocks() {
 		password_prompt_state_on_left_click_given_locked
 		input_correct_password
 		assert active (main_region.Ride)
@@ -135,10 +119,9 @@ testclass bike_computer_test for statechart Statechart {
 		raise left_button_clicked
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
-		raise left_button_clicked
-		
 		input_wrong_password
-		assert called is_password_tries_exceeded(1) 1 times
+		assert active (main_region.PasswordPrompt.r1.Ready)
+		input_wrong_password
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
@@ -164,33 +147,6 @@ testclass bike_computer_test for statechart Statechart {
 		raise double_button_clicked
 		
 		assert called verify_password(50) 1 times
-	}
-	
-	operation exceed_max_password_tries() {
-		mock_password_tries_exceeded
-		
-		input_wrong_password
-		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called is_password_tries_exceeded(1) 1 times
-		
-		input_wrong_password
-		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called is_password_tries_exceeded(2) 1 times
-		
-		input_wrong_password
-		assert active (main_region.PasswordPrompt.r1.Ready)
-		assert called is_password_tries_exceeded(3) 1 times
-		
-		input_wrong_password
-		assert active (main_region.Alarm)
-		assert called is_password_tries_exceeded(4) 1 times
-	}
-	
-	operation mock_password_tries_exceeded() {
-		mock is_password_tries_exceeded(1) returns (false)
-		mock is_password_tries_exceeded(2) returns (false)
-		mock is_password_tries_exceeded(3) returns (false)
-		mock is_password_tries_exceeded(4) returns (true)
 	}
 
 	operation input_wrong_password() {
