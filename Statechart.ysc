@@ -27,7 +27,7 @@
           </vertices>
           <vertices xsi:type="sgraph:Exit" xmi:id="_DrTpEB8IEe2lBoCq7YSu1A" name="wrong_password_exit" incomingTransitions="_z2cdoB8REe2lBoCq7YSu1A"/>
           <vertices xsi:type="sgraph:Choice" xmi:id="_Kuh0MB8IEe2lBoCq7YSu1A" incomingTransitions="_M9rzYB8IEe2lBoCq7YSu1A">
-            <outgoingTransitions xmi:id="_VJ9RQB8IEe2lBoCq7YSu1A" specification="[verify_password(password)]&#xA;&#xA;&#xA;" target="_K_K4QB8IEe2lBoCq7YSu1A"/>
+            <outgoingTransitions xmi:id="_VJ9RQB8IEe2lBoCq7YSu1A" specification="[verify_password(password)] / password = 0;&#xA;&#x9;password_tries = 0&#xA;&#x9;&#xA;&#xA;&#xA;&#xA;" target="_K_K4QB8IEe2lBoCq7YSu1A"/>
             <outgoingTransitions xmi:id="_jcgI0B8TEe22Ob54xs-QWw" specification="else / &#xA;&#xA;password_tries++&#xA;&#x9;&#xA;&#xA;&#xA;&#xA;&#xA;" target="_qtzeIB8REe2lBoCq7YSu1A"/>
           </vertices>
           <vertices xsi:type="sgraph:Exit" xmi:id="_K_K4QB8IEe2lBoCq7YSu1A" name="correct_password_exit" incomingTransitions="_VJ9RQB8IEe2lBoCq7YSu1A"/>
@@ -255,7 +255,7 @@
     <edges xmi:id="_npvx4B7-Ee2lBoCq7YSu1A" type="Transition" element="_nppEMB7-Ee2lBoCq7YSu1A" source="_icEMEB7-Ee2lBoCq7YSu1A" target="_i4oMQB7-Ee2lBoCq7YSu1A">
       <children xsi:type="notation:DecorationNode" xmi:id="_npxAAB7-Ee2lBoCq7YSu1A" type="TransitionExpression">
         <styles xsi:type="notation:ShapeStyle" xmi:id="_npxAAR7-Ee2lBoCq7YSu1A"/>
-        <layoutConstraint xsi:type="notation:Location" xmi:id="_npxAAh7-Ee2lBoCq7YSu1A" x="1" y="35"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_npxAAh7-Ee2lBoCq7YSu1A" x="-3" y="10"/>
       </children>
       <styles xsi:type="notation:ConnectorStyle" xmi:id="_npvx4R7-Ee2lBoCq7YSu1A" routing="Rectilinear" lineColor="4210752"/>
       <styles xsi:type="notation:FontStyle" xmi:id="_npwY8B7-Ee2lBoCq7YSu1A" fontName="Verdana"/>
