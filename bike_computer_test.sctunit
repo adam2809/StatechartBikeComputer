@@ -3,7 +3,7 @@ testclass bike_computer_test for statechart Statechart {
 	operation ride_state_active_on_init () {
 		enter
 		
-		assert called disable_alarm 1 times
+		assert called disable_alarm_horn 1 times
 		assert called display_unlocked 1 times
 		assert active (main_region.Ride)
 	}
