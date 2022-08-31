@@ -24,7 +24,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise motion_detected
 		
-		assert called activate_alarm 1 times
+		assert called activate_alarm_horn 1 times
 		assert active (main_region.Alarm)
 	}
 
@@ -113,7 +113,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise motion_detected
 		
-		assert called activate_alarm 1 times
+		assert called activate_alarm_horn 1 times
 		assert active (main_region.Alarm)
 		
 		raise left_button_clicked
