@@ -4,6 +4,7 @@ testclass bike_computer_test for statechart Statechart {
 		enter
 		
 		assert called disable_alarm_horn 1 times
+		assert called disable_alarm_display 1 times
 		assert called display_unlocked 1 times
 		assert active (main_region.Ride)
 	}
@@ -25,6 +26,7 @@ testclass bike_computer_test for statechart Statechart {
 		raise motion_detected
 		
 		assert called activate_alarm_horn 1 times
+		assert called activate_alarm_display 1 times
 		assert active (main_region.Alarm)
 	}
 
@@ -43,6 +45,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise left_button_clicked
 
+		assert called disable_alarm_display 2 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 	}
 	
@@ -114,9 +117,11 @@ testclass bike_computer_test for statechart Statechart {
 		raise motion_detected
 		
 		assert called activate_alarm_horn 1 times
+		assert called activate_alarm_display 1 times
 		assert active (main_region.Alarm)
 		
 		raise left_button_clicked
+		assert called disable_alarm_display 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_wrong_password
@@ -125,6 +130,8 @@ testclass bike_computer_test for statechart Statechart {
 		assert active (main_region.PasswordPrompt.r1.Ready)
 		
 		input_correct_password
+		assert called disable_alarm_display 1 times
+		assert called disable_alarm_horn 1 times
 		assert active (main_region.Ride)
 	}
 	

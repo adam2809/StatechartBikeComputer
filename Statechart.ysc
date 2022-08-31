@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/sgraph/2.0.0">
-  <sgraph:Statechart xmi:id="_ZNxQgB7-Ee2lBoCq7YSu1A" specification="// Use the event driven execution model.&#xA;// Switch to cycle based behavior&#xA;// by specifying '@CycleBased(200)'.&#xA;@EventDriven&#xA;&#xA;// Use @SuperSteps(yes) to enable&#xA;// super step semantics.&#xA;@SuperSteps(no)&#xA;&#xA;interface:&#xA;&#x9;// Define events and variables here. &#xA;&#x9;// Use CTRL + Space for content assist.&#xA;&#x9;in event left_button_clicked&#xA;&#x9;in event right_button_clicked&#xA;&#x9;in event double_button_clicked&#xA;&#x9;&#xA;&#x9;in event motion_detected&#xA;&#x9;&#xA;&#x9;operation disable_alarm_horn()&#xA;&#x9;operation activate_alarm_horn()&#xA;&#x9;operation display_unlocked()&#xA;&#x9;operation display_locked()&#xA;&#x9;&#xA;&#x9;operation new_password_input(password:integer)&#xA;&#x9;operation verify_password(password:integer):boolean&#xA;&#x9;&#xA;&#x9;&#xA;&#x9;&#xA;internal:&#xA;&#x9;var     password:integer = 1" name="Statechart">
+  <sgraph:Statechart xmi:id="_ZNxQgB7-Ee2lBoCq7YSu1A" specification="// Use the event driven execution model.&#xA;// Switch to cycle based behavior&#xA;// by specifying '@CycleBased(200)'.&#xA;@EventDriven&#xA;&#xA;// Use @SuperSteps(yes) to enable&#xA;// super step semantics.&#xA;@SuperSteps(no)&#xA;&#xA;interface:&#xA;&#x9;// Define events and variables here. &#xA;&#x9;// Use CTRL + Space for content assist.&#xA;&#x9;in event left_button_clicked&#xA;&#x9;in event right_button_clicked&#xA;&#x9;in event double_button_clicked&#xA;&#x9;&#xA;&#x9;in event motion_detected&#xA;&#x9;&#xA;&#x9;operation disable_alarm_horn()&#xA;&#x9;operation disable_alarm_display()&#xA;&#x9;operation activate_alarm_horn()&#xA;&#x9;operation activate_alarm_display()&#xA;&#x9;operation display_unlocked()&#xA;&#x9;operation display_locked()&#xA;&#x9;&#xA;&#x9;operation new_password_input(password:integer)&#xA;&#x9;operation verify_password(password:integer):boolean&#xA;&#x9;&#xA;&#x9;&#xA;&#x9;&#xA;internal:&#xA;&#x9;var     password:integer = 1" name="Statechart">
     <regions xmi:id="_ZN066B7-Ee2lBoCq7YSu1A" name="main region">
       <vertices xsi:type="sgraph:Entry" xmi:id="_ZN066R7-Ee2lBoCq7YSu1A">
         <outgoingTransitions xmi:id="_ZN066h7-Ee2lBoCq7YSu1A" target="_ZN1h8B7-Ee2lBoCq7YSu1A"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_ZN1h8B7-Ee2lBoCq7YSu1A" specification="entry / disable_alarm_horn&#xA;&#xA;&#xA;&#xA;;&#xA;&#xA;&#xA;&#x9;display_unlocked&#xA;&#x9;" name="Ride" incomingTransitions="_ZN066h7-Ee2lBoCq7YSu1A _vfLRgB8IEe2lBoCq7YSu1A">
+      <vertices xsi:type="sgraph:State" xmi:id="_ZN1h8B7-Ee2lBoCq7YSu1A" specification="entry / disable_alarm_horn;&#xA;disable_alarm_display;&#xA;&#x9;&#xA;&#x9;display_unlocked&#xA;&#x9;" name="Ride" incomingTransitions="_ZN066h7-Ee2lBoCq7YSu1A _vfLRgB8IEe2lBoCq7YSu1A">
         <outgoingTransitions xmi:id="_ZN2JAR7-Ee2lBoCq7YSu1A" specification="left_button_clicked" target="_ZN2wEx7-Ee2lBoCq7YSu1A"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_ZN2wEx7-Ee2lBoCq7YSu1A" specification="entry / display_locked" name="Secured" incomingTransitions="_ZN2JAR7-Ee2lBoCq7YSu1A">
         <outgoingTransitions xmi:id="_mS1CQB7-Ee2lBoCq7YSu1A" specification="motion_detected&#xA;" target="_ib7CIB7-Ee2lBoCq7YSu1A"/>
         <outgoingTransitions xmi:id="_nJ3_AB7-Ee2lBoCq7YSu1A" specification="left_button_clicked" target="_i4g3gB7-Ee2lBoCq7YSu1A"/>
       </vertices>
-      <vertices xsi:type="sgraph:State" xmi:id="_ib7CIB7-Ee2lBoCq7YSu1A" specification="entry / activate_alarm_horn&#xA;&#xA;&#xA;" name="Alarm" incomingTransitions="_mS1CQB7-Ee2lBoCq7YSu1A">
-        <outgoingTransitions xmi:id="_nppEMB7-Ee2lBoCq7YSu1A" specification="left_button_clicked&#xA;&#xA;" target="_i4g3gB7-Ee2lBoCq7YSu1A"/>
+      <vertices xsi:type="sgraph:State" xmi:id="_ib7CIB7-Ee2lBoCq7YSu1A" specification="entry / activate_alarm_horn;&#xA;&#x9;activate_alarm_display&#xA;&#x9;&#xA;&#xA;&#xA;" name="Alarm" incomingTransitions="_mS1CQB7-Ee2lBoCq7YSu1A">
+        <outgoingTransitions xmi:id="_nppEMB7-Ee2lBoCq7YSu1A" specification="left_button_clicked / disable_alarm_display&#xA;&#xA;&#xA;" target="_i4g3gB7-Ee2lBoCq7YSu1A"/>
       </vertices>
       <vertices xsi:type="sgraph:State" xmi:id="_i4g3gB7-Ee2lBoCq7YSu1A" name="PasswordPrompt" incomingTransitions="_nJ3_AB7-Ee2lBoCq7YSu1A _nppEMB7-Ee2lBoCq7YSu1A">
         <outgoingTransitions xmi:id="_vfLRgB8IEe2lBoCq7YSu1A" specification="&#xA;" target="_ZN1h8B7-Ee2lBoCq7YSu1A"/>
