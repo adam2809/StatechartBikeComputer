@@ -36,6 +36,7 @@ testclass bike_computer_test for statechart Statechart {
 		
 		raise left_button_clicked
 		
+		assert called new_password_input(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 	}
 	
@@ -46,8 +47,21 @@ testclass bike_computer_test for statechart Statechart {
 		raise left_button_clicked
 
 		assert called disable_alarm_display 2 times
+		assert called new_password_input(1) 1 times
 		assert active (main_region.PasswordPrompt.r1.Ready)
 	}
+	
+	
+	@Test
+	operation alarm_state_on_password_prompt_timeout() {
+		password_prompt_state_on_left_click_given_locked
+		
+		raise left_button_clicked
+
+		assert called disable_alarm_display 2 times
+		assert called new_password_input(1) 1 times
+		assert active (main_region.PasswordPrompt.r1.Ready)
+	}	
 	
 	@Test
 	operation input_short_char_on_left_click() {
