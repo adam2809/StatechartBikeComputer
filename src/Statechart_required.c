@@ -15,6 +15,7 @@ extern void statechart_disable_alarm_display( Statechart* handle){
     ESP_LOGI(TAG,"Disabling alarm display");
     if(alarm_display_task_handle != NULL){
         vTaskDelete(alarm_display_task_handle);
+	alarm_display_task_handle = NULL;
     }
 }
 
@@ -42,6 +43,7 @@ extern void statechart_disable_alarm_horn( Statechart* handle){
     gpio_set_level(CONFIG_BUZZER_PIN, 0);
     if(alarm_horn_task_handle != NULL){
         vTaskDelete(alarm_horn_task_handle);
+	alarm_horn_task_handle = NULL;
     }
 }
 
